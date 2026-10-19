@@ -189,7 +189,7 @@ document.querySelectorAll('body > *:not(#surpriseScreen):not(script)').forEach(f
             // تشغيل موسيقى الظرف الخاصة
             try {
                 if (!envelopeSong) {
-                    envelopeSong = new Audio('music/envelope.mp3');
+                    envelopeSong = new Audio('https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/envelope.mp3');
                     envelopeSong.volume = 0.5;
                     envelopeSong.loop = true;
                 }
@@ -255,7 +255,7 @@ if (openEnvelopeBtn) {
         // 2. تشغيل صوت الهلاهل (زغاريد)
         try {
             if (!zaghareetSong) {
-                zaghareetSong = new Audio('music/zaghareet.mp3');
+                zaghareetSong = new Audio('https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/zaghareet.mp3');
                 zaghareetSong.volume = 0.8;
                 zaghareetSong.loop = false;
             }
