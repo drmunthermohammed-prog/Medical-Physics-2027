@@ -5208,3 +5208,107 @@ body.surprise-active > *:not(.surprise-screen):not(script) {
         height: 15px;
     }
 }
+
+/* =========================================================
+   🎬 شاشة التحميل المسبق (Preloader)
+   ========================================================= */
+.project-preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999999; /* فوق كل شيء */
+    background: linear-gradient(135deg, #0a1128 0%, #1e3a8a 50%, #0d2354 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.project-preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 20px;
+    animation: preloaderFadeIn 0.6s ease-out;
+}
+
+@keyframes preloaderFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.preloader-cap {
+    font-size: 4rem;
+    margin-bottom: 15px;
+    animation: preloaderCapFloat 2s ease-in-out infinite;
+    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+}
+
+@keyframes preloaderCapFloat {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+.preloader-title {
+    font-family: 'Aref Ruqaa', 'Amiri', serif;
+    font-size: 1.8rem;
+    color: #fbbf24;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+}
+
+.preloader-subtitle {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.85rem;
+    color: #bae6fd;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* شريط التقدم */
+.preloader-bar-wrap {
+    width: 100%;
+    height: 12px;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(125, 211, 252, 0.3);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+    position: relative;
+}
+
+.preloader-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #d4af37, #fbbf24, #d4af37);
+    background-size: 200% 100%;
+    border-radius: 20px;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
+    animation: preloaderShimmer 2s linear infinite;
+}
+
+@keyframes preloaderShimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.preloader-percent {
+    font-family: 'Cairo', sans-serif;
+    font-size: 1rem;
+    color: #fbbf24;
+    font-weight: 800;
+    margin-top: 12px;
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+}
+
+@media (max-width: 600px) {
+    .preloader-cap { font-size: 3rem; }
+    .preloader-title { font-size: 1.5rem; }
+    .preloader-subtitle { font-size: 0.75rem; }
+}
