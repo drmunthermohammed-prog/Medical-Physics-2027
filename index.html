@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENIORS 2027 | Medical Physics - Al-Hadi University</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;900&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+    <!-- ===== شاشة الترحيب ===== -->
+<!-- ===== المفاجأة: الظرف الذهبي + رحلة الصور ===== -->
+<div class="surprise-screen" id="surpriseScreen">
+    
+    <!-- المرحلة 1: إدخال الاسم -->
+    <div class="sp-stage sp-stage-name active" id="spStageName">
+        <div class="sp-stars-bg"></div>
+        <div class="sp-content">
+            <div class="sp-cap">🎓</div>
+            <h1 class="sp-title">مبروك التخرج</h1>
+            <div class="sp-subtitle">CONGRATULATIONS · 2027</div>
+            
+            <div class="sp-ornament"><span></span><span>✦</span><span></span></div>
+            
+            <p class="sp-intro">اكتب اسمك لتصلك رسالة خاصة من جامعتك</p>
+            
+            <div class="sp-input-wrapper">
+                <input type="text" id="spNameInput" class="sp-input" placeholder="اكتب اسمك هنا..." autocomplete="off">
+                <div class="sp-suggestions" id="spSuggestions"></div>
+            </div>
+            
+            <div class="sp-error" id="spError"></div>
+            
+            <button class="sp-btn-primary" id="spEnterBtn" type="button">
+                <span>✉️</span> استلم رسالتك
+            </button>
+            
+            <button class="sp-skip" id="spSkipBtn" type="button">تخطي إلى الموقع ←</button>
+        </div>
+    </div>
+    
+    <!-- المرحلة 2: الظرف -->
+    <div class="sp-stage sp-stage-envelope" id="spStageEnvelope">
+        <div class="sp-stars-bg"></div>
+        <div class="sp-envelope-hint" id="spEnvelopeHint">لديك رسالة خاصة يا [الاسم]</div>
+        
+        <div class="sp-envelope-scene">
+            <div class="sp-envelope" id="spEnvelope">
+                <div class="sp-envelope-back"></div>
+                <div class="sp-letter" id="spLetter">
+                    <div class="sp-letter-inner">
+                        <div class="sp-letter-to">إلى الخريج</div>
+                        <div class="sp-letter-name" id="spLetterName">...</div>
+                        <div class="sp-letter-lines">
+                            <div class="sp-line"></div>
+                            <div class="sp-line short"></div>
+                            <div class="sp-line"></div>
+                            <div class="sp-line shorter"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sp-envelope-front"></div>
+                <div class="sp-envelope-flap" id="spEnvelopeFlap"></div>
+                <div class="sp-wax-seal" id="spWaxSeal">⚛</div>
+            </div>
+        </div>
+        
+        <button class="sp-btn-primary" id="spOpenEnvelopeBtn" type="button">
+            <span>✨</span> افتح الرسالة
+        </button>
+    </div>
+    
+    <!-- المرحلة 3: الرسالة الشخصية -->
+    <div class="sp-stage sp-stage-message" id="spStageMessage">
+        <div class="sp-stars-bg"></div>
+        <div class="sp-message-card" id="spMessageCard">
+            <div class="sp-msg-corner tl">✦</div>
+            <div class="sp-msg-corner tr">✦</div>
+            <div class="sp-msg-corner bl">✦</div>
+            <div class="sp-msg-corner br">✦</div>
+            
+            <div class="sp-msg-icon">🎓</div>
+            <div class="sp-msg-univ">جامعة الهادي</div>
+            <div class="sp-msg-dept">قسم الفيزياء الطبية</div>
+            
+            <div class="sp-msg-divider">✦</div>
+            
+            <div class="sp-msg-to">إلى الخريج/ة</div>
+            <div class="sp-msg-name" id="spMsgName">...</div>
+            
+            <div class="sp-msg-text">
+                في هذا اليوم المبارك، نقف أمامك بكل فخر واعتزاز.<br>
+                أنت اليوم لست فقط خريجاً... بل <strong>حارساً للأمل</strong>،<br>
+                و<strong>سفيراً للعلم</strong> في غرف التشخيص،<br>
+                و<strong>عقلاً</strong> سيحمي الأرواح بالمعرفة.<br><br>
+                كل ليالي السهر، كل معادلة حلّيتها،<br>
+                كل تجربة أجريتها... أوصلتك إلى هنا.<br><br>
+                <em>"من يحمل العلم يحمل مسؤولية إحياء الأمل"</em>
+            </div>
+            
+            <div class="sp-msg-sign">
+                <div class="sp-msg-sign-line"></div>
+                <div class="sp-msg-sign-text">هدية منـــ — تقني الاشعة مرتضى البيضاني</div>
+            </div>
+        </div>
+        
+        <button class="sp-btn-primary" id="spMessageContinueBtn" type="button">
+            <span>✨</span> شاهد رحلتك
+        </button>
+    </div>
+    
+    <!-- المرحلة 4: رحلة الصور -->
+    <div class="sp-stage sp-stage-journey" id="spStageJourney">
+        <div class="sp-journey-bg"></div>
+        
+        <div class="sp-journey-photo sp-journey-child" id="spJourneyChild">
+            <img id="spChildImg" src="" alt="">
+            <div class="sp-journey-vignette"></div>
+            <div class="sp-journey-caption sp-journey-caption-child">
+                <div class="sp-journey-year">2005</div>
+                <div class="sp-journey-text">كان حلماً...</div>
+            </div>
+        </div>
+        
+        <div class="sp-journey-photo sp-journey-adult" id="spJourneyAdult">
+            <img id="spAdultImg" src="" alt="">
+            <div class="sp-journey-vignette"></div>
+            <div class="sp-journey-caption sp-journey-caption-adult">
+                <div class="sp-journey-year">2027</div>
+                <div class="sp-journey-text">...أصبح حقيقة</div>
+            </div>
+        </div>
+        
+        <div class="sp-journey-final" id="spJourneyFinal">
+            <div class="sp-final-cap">🎓</div>
+            <div class="sp-final-title">مبروك التخرج</div>
+            <div class="sp-final-name" id="spFinalName">...</div>
+            <div class="sp-final-sub">نحن فخورون بك 💛</div>
+        </div>
+    </div>
+    
+    <!-- المرحلة 5: الشهادة -->
+    <div class="sp-stage sp-stage-cert" id="spStageCert">
+        <div class="sp-stars-bg"></div>
+        
+        <div class="sp-cert-wrapper">
+            <div class="sp-cert" id="spCert">
+                <div class="sp-cert-corner tl">✦</div>
+                <div class="sp-cert-corner tr">✦</div>
+                <div class="sp-cert-corner bl">✦</div>
+                <div class="sp-cert-corner br">✦</div>
+                
+                <div class="sp-cert-inner">
+                    <div class="sp-cert-icon">🎓</div>
+                    <h2 class="sp-cert-title">شهادة تخرج</h2>
+                    <div class="sp-cert-sub">CERTIFICATE · 2027</div>
+                    
+                    <div class="sp-cert-ornament"><span></span>✦<span></span></div>
+                    
+                    <div class="sp-cert-to">تشهد جامعة الهادي بأن</div>
+                    <div class="sp-cert-name" id="spCertName">...</div>
+                    <div class="sp-cert-text">قد أكمل بنجاح متطلبات<br>درجة البكالوريوس في الفيزياء الطبية</div>
+                    
+                    <div class="sp-cert-photo">
+                        <img id="spCertPhoto" src="" alt="">
+                    </div>
+                    
+                    <div class="sp-cert-meta">
+                        <div class="sp-cert-serial" id="spCertSerial">MP-2027-001</div>
+                        <div class="sp-cert-date">2027</div>
+                    </div>
+                    
+                    <div class="sp-cert-seal">⚛</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sp-cert-actions">
+            <button class="sp-btn-primary" id="spNextToStarsBtn" type="button">
+                <span>✨</span> شاهد سماء الدفعة
+            </button>
+            <button class="sp-btn-secondary" id="spDownloadCertBtn" type="button">
+                <span>📥</span> تحميل
+            </button>
+            <button class="sp-btn-secondary" id="spShareCertBtn" type="button">
+                <span>📤</span> مشاركة
+            </button>
+        </div>
+    </div>
+    
+    <!-- ===== المرحلة 6: سماء الدفعة (النجوم) ===== -->
+    <!-- ===== المرحلة 6: سماء الدفعة (النجوم) ===== -->
+    <div class="sp-stage sp-stage-stars" id="spStageStars">
+        <div class="sp-night-sky"></div>
+        
+        <div class="sp-stars-header">
+            <div class="sp-stars-title">✨ سماء دفعة 2027 ✨</div>
+            <div class="sp-stars-hint" id="spStarsHint">
+                ابحث عن <strong>نجمتك الذهبية</strong> في السماء
+            </div>
+        </div>
+        
+        <div class="sp-stars-sky" id="spStarsSky"></div>
+        
+        <!-- زر الانتقال للموقع -->
+        <button class="sp-stars-skip" id="spStarsSkipBtn" type="button">
+            <span>🏠</span>
+            <span>ادخل الموقع مباشرة</span>
+        </button>
+        
+        <!-- طبقة التكبير عند اختيار النجمة -->
+        <div class="sp-star-zoom" id="spStarZoom">
+            <div class="sp-star-zoom-inner">
+                <div class="sp-star-zoom-glow"></div>
+                <div class="sp-star-zoom-photo" id="spStarZoomPhoto">
+                    <img id="spStarZoomImg" src="" alt="">
+                </div>
+                <div class="sp-star-zoom-text">✨ أنت هذه النجمة ✨</div>
+                <div class="sp-star-zoom-name" id="spStarZoomName">...</div>
+                <div class="sp-star-zoom-sub">نجمة ساطعة في سماء دفعة 2027</div>
+                <button class="sp-btn-primary" id="spStarsEnterBtn" type="button">
+                    <span>🏠</span> ادخل الموقع
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ⬇️ هنا يبدأ الموقع الرئيسي ⬇️ -->
+<div class="bg-layer"></div>
+    <div class="bg-layer"></div>
+
+    <!-- ===== الترويسة ===== -->
+    <header class="poster-header">
+        <span class="graduation-cap">🎓</span>
+        <h1>SENI<span class="atom-icon">⚛</span>RS</h1>
+        <div class="divider"></div>
+        <h2>قسم الفيزياء الطبية</h2>
+        <h3>MEDICAL PHYSICS DEPARTMENT</h3>
+        <div class="year-badge">2027</div>
+        
+        <div class="congrats-message" id="congratsMessage">
+            <div class="congrats-decoration">❝</div>
+            <p class="congrats-line">
+                إلى من قضوا لياليهم بين <span class="highlight">معادلات الإشعاع</span> و<span class="highlight">خوارزميات العلاج</span>، وقلوبهم تنبض بالحياة... إلى من جمعوا بين <span class="highlight">دقة الفيزياء</span> و<span class="highlight">رحمة الطب</span>،
+            </p>
+            <p class="congrats-highlight">
+                إلى خريجي الفيزياء الطبية — دفعة 2027<br>
+                في <strong>جامعة الهادي</strong>
+            </p>
+            <div class="congrats-ornament">
+                <span></span><span>✦</span><span></span>
+            </div>
+            <p class="congrats-line">
+                هنيئاً لكم هذا الإنجاز العظيم، فأنتم اليوم <span class="highlight">حرّاس الأمل</span> في مختبرات العلاج، و<span class="highlight">سفراء العلم</span> في غرف التشخيص، و<span class="highlight">عقول المستقبل</span> التي ستحمي الأرواح بالمعرفة.
+            </p>
+            <div class="congrats-ornament">
+                <span></span><span>✦</span><span></span>
+            </div>
+            <p class="congrats-final">
+                بارك الله فيكم، وجعل خطواتكم القادمة نوراً يضيء دروب المرضى، وعزماً يرفع اسم جامعتكم عالياً.
+            </p>
+            <div class="congrats-decoration bottom">❞</div>
+        </div>
+        
+        <button class="congrats-toggle" id="congratsToggle">
+            اقرأ الرسالة كاملة ⌄
+        </button>
+    </header>
+
+    <!-- ===== شريط التنقل السريع ===== -->
+    <nav class="quick-nav" id="quickNav">
+        <a href="#videoHero" class="quick-nav-btn">
+            <span>🎬</span>
+            <span>الفيديو</span>
+        </a>
+        <a href="book.html" class="quick-nav-btn">
+            <span>📖</span>
+            <span>الذكريات</span>
+        </a>
+        <a href="game.html" class="quick-nav-btn">
+            <span>🎮</span>
+            <span>خمّن مَن</span>
+        </a>
+        <button class="quick-nav-btn" id="showAllPhotosBtn" type="button">
+            <span>🖼️</span>
+            <span>الصور</span>
+        </button>
+    </nav>
+
+    <!-- ===== قسم الفيديو ===== -->
+
+<section class="video-hero" id="videoHero">
+    
+    <!-- الصف العلوي -->
+    <div class="vh-photos-row vh-top" id="vhTopRow"></div>
+    
+    <!-- الوسط -->
+    <div class="vh-middle">
+        <div class="vh-photos-col vh-left" id="vhLeftCol"></div>
+        
+        <div class="video-section">
+            <div class="video-title">✦ فيلم التخرج ✦</div>
+            
+            <div class="video-tabs">
+                <button class="video-tab active" data-tab="official" id="tabOfficial">
+                    🎬 الفيلم الرسمي
+                </button>
+                <button class="video-tab" id="openSlideshowBtn">
+                    ✨ فيلم الدفعة
+                </button>
+            </div>
+            
+            <div class="video-tab-content active" id="tabContentOfficial">
+                <!-- الفيديو الرئيسي -->
+                <div class="video-frame">
+                    <video id="mainVideo" controls preload="metadata" playsinline>
+                        <source src="video/graduation.mp4" type="video/mp4">
+                        متصفحك لا يدعم تشغيل الفيديو.
+                    </video>
+                </div>
+                
+                <!-- ⬇️ قائمة الفيديوهات -->
+                <div class="video-playlist" id="videoPlaylist"></div>
+            </div>
+        </div>
+        
+        <div class="vh-photos-col vh-right" id="vhRightCol"></div>
+    </div>
+    
+</section>
+
+<!-- 🎵 زر الموسيقى الخلفية -->
+<button class="bg-music-toggle" id="bgMusicToggle" type="button" title="تشغيل/إيقاف الموسيقى">
+    <span id="bgMusicIcon">🔊</span>
+</button>
+
+
+    <button class="scroll-top" id="scrollTopBtn">↑</button>
+
+    <!-- ===== الأزرار العائمة ===== -->
+    <div class="floating-buttons">
+        <a href="book.html" class="certificate-btn book-btn" id="bookBtn">
+            <span class="icon">📖</span>
+            <span>كتاب الذكريات</span>
+        </a>
+        <a href="game.html" class="certificate-btn game-btn" id="gameBtn">
+            <span class="icon">🎮</span>
+            <span>خمّن مَن؟</span>
+        </a>
+    </div>
+
+<div class="footer-note">
+    <span>صُنع بـ <span class="heart">❤</span> لدفعة الفيزياء الطبية 2027 - التقني مرتضى البيضاني</span>
+    <span class="footer-contact">
+        للتواصل اضغط على
+        <div class="social-icons">
+            <a href="https://instagram.com/rt_mortuza" target="_blank" rel="noopener" class="social-icon instagram" title="انستغرام">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://t.me/m_alb2" target="_blank" rel="noopener" class="social-icon telegram" title="تيليجرام">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            </a>
+        </div>
+    </span>
+</div>
+
+    <!-- ===== نافذة الطالب ===== -->
+    <div class="modal" id="studentModal">
+        <div class="modal-card" id="modalCard">
+            <div class="student-counter" id="studentCounter">1 / 1</div>
+            <button class="nav-btn prev" id="prevBtn">‹</button>
+            <button class="nav-btn next" id="nextBtn">›</button>
+            <button class="close-btn" id="closeModal">✕</button>
+            
+            <div class="modal-card-inner">
+                <div class="modal-front">
+                    <img id="modalChildImg" src="" alt="طفل">
+                    <div class="name-tag" id="modalChildName">الاسم</div>
+                </div>
+                <div class="modal-back">
+                    <img id="modalAdultImg" src="" alt="متخرج">
+                    <div class="info-tag">
+                        <span class="name" id="modalAdultName">الاسم</span>
+                        <span class="job-title" id="modalAdultJob">المهنة</span>
+                        <div class="modal-awards" id="modalAdultAwards"></div>
+                        <div class="message" id="modalAdultMessage">العبارة الشخصية</div>
+                    </div>
+                </div>
+            </div>
+            <div class="flip-hint">👆 اضغط على البطاقة لقلبها</div>
+        </div>
+    </div>
+
+    <!-- ===== عرض فيلم الدفعة ===== -->
+    <div class="fs-slideshow" id="fsSlideshow">
+        <div class="fs-progress-wrap">
+            <div class="fs-progress-bar">
+                <div class="fs-progress-fill" id="fsProgressFill"></div>
+            </div>
+            <div class="fs-counter" id="fsCounter">1 / 126</div>
+        </div>
+        
+        <div class="fs-top-controls">
+            <button class="fs-icon-btn fs-close-btn" id="fsCloseBtn" title="إغلاق">✕</button>
+            <div class="fs-music-badge" id="fsMusicBadge">
+                <span class="fs-music-eq">
+                    <span></span><span></span><span></span>
+                </span>
+                <span class="fs-music-name" id="fsMusicName">الموسيقى 1</span>
+            </div>
+            <button class="fs-icon-btn" id="fsMuteBtn" title="كتم الصوت">🔊</button>
+        </div>
+        
+<div class="fs-photo-layer">
+    <div class="fs-photo-bg" id="fsPhotoBg"></div>
+    <img class="fs-photo" id="fsPhoto" src="" alt="">
+    <img class="fs-photo-secondary" id="fsPhotoSecondary" src="" alt="">
+    <div class="fs-vignette"></div>
+</div>
+        
+        <div class="fs-tap-zone fs-tap-right" id="fsTapRight"></div>
+        <div class="fs-tap-zone fs-tap-left" id="fsTapLeft"></div>
+        
+        <div class="fs-info" id="fsInfo">
+            <div class="fs-info-inner">
+                <div class="fs-name" id="fsName"></div>
+                <div class="fs-job" id="fsJob"></div>
+                <div class="fs-awards" id="fsAwards"></div>
+                <div class="fs-message" id="fsMessage"></div>
+            </div>
+        </div>
+        
+<div class="fs-controls">
+    <button class="fs-ctrl-btn" id="fsPrevBtn" title="السابق">⏮</button>
+    <button class="fs-ctrl-btn fs-play-btn" id="fsPlayPauseBtn" title="إيقاف/تشغيل">⏸</button>
+    <button class="fs-ctrl-btn" id="fsNextBtn" title="التالي">⏭</button>
+    <button class="fs-ctrl-btn" id="fsMusicListBtn" title="اختيار الموسيقى">🎵</button>
+    <button class="fs-ctrl-btn" id="fsModeBtn" title="تغيير النمط">📖</button>
+    <button class="fs-ctrl-btn" id="fsFullscreenBtn" title="ملء الشاشة">⛶</button>
+</div>
+        
+        <div class="fs-music-panel" id="fsMusicPanel">
+            <div class="fs-music-panel-header">
+                <span class="fs-music-panel-title">🎵 اختر الموسيقى</span>
+                <button class="fs-music-panel-close" id="fsMusicPanelClose">✕</button>
+            </div>
+            <div class="fs-music-list" id="fsMusicList"></div>
+        </div>
+    </div>
+
+    <!-- ===== نافذة جميع الصور ⬅️ قبل السكربتات! ===== -->
+    <div class="all-photos-modal" id="allPhotosModal">
+        <div class="all-photos-header">
+            <h2>🖼️ جميع صور الخريجين</h2>
+            <span class="all-photos-count" id="allPhotosCount">0</span>
+            <button class="all-photos-close" id="allPhotosClose" type="button">✕</button>
+        </div>
+        
+        <div class="controls">
+            <div class="search-wrapper">
+                <span class="search-icon">🔍</span>
+                <input type="text" id="searchInput" class="search-box" placeholder="ابحث عن اسم الطالب...">
+            </div>
+        </div>
+        
+        <div class="all-photos-grid" id="allPhotosGrid"></div>
+    </div>
+    <!-- نافذة الشهادة (للوصول من الموقع الرئيسي) -->
+    <div class="cert-modal" id="certModal">
+        <div class="cert-modal-content">
+            <button class="cert-modal-close" id="certModalClose" type="button">✕</button>
+            
+            <div class="sp-cert" id="certModalCert">
+                <div class="sp-cert-corner tl">✦</div>
+                <div class="sp-cert-corner tr">✦</div>
+                <div class="sp-cert-corner bl">✦</div>
+                <div class="sp-cert-corner br">✦</div>
+                
+                <div class="sp-cert-inner">
+                    <div class="sp-cert-icon">🎓</div>
+                    <h2 class="sp-cert-title">شهادة تخرج</h2>
+                    <div class="sp-cert-sub">CERTIFICATE · 2027</div>
+                    <div class="sp-cert-ornament"><span></span>✦<span></span></div>
+                    <div class="sp-cert-to">تشهد جامعة الهادي بأن</div>
+                    <div class="sp-cert-name" id="spCertNameModal">...</div>
+                    <div class="sp-cert-text">قد أكمل بنجاح متطلبات<br>درجة البكالوريوس في الفيزياء الطبية</div>
+                    <div class="sp-cert-photo">
+                        <img id="spCertPhotoModal" src="" alt="">
+                    </div>
+                    <div class="sp-cert-meta">
+                        <div class="sp-cert-serial" id="spCertSerialModal">MP-2027-001</div>
+                        <div class="sp-cert-date">2027</div>
+                    </div>
+                    <div class="sp-cert-seal">⚛</div>
+                </div>
+            </div>
+            
+            <div class="cert-modal-actions">
+                <button class="sp-btn-secondary" id="certModalDownload" type="button">📥 تحميل</button>
+                <button class="sp-btn-secondary" id="certModalShare" type="button">📤 مشاركة</button>
+            </div>
+        </div>
+    </div>
+	
+    <!-- ===== السكربتات (في النهاية فقط!) ===== -->
+	<script src="js/bgmusic.js"></script>
+    <script src="js/welcome.js"></script>
+    <script src="data/students.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/slideshow.js"></script>
+</body>
+</html>

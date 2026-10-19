@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سيرة الخريجين | الفيزياء الطبية 2027</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;900&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/book.css">
+</head>
+<body class="bio-body">
+    
+    <div class="bio-bg"></div>
+    
+    <header class="bio-header">
+        <a href="index.html" class="bio-back-btn">→ الرئيسية</a>
+        <div class="bio-header-title">
+            <h1>📖 سيرة خريج</h1>
+            <p>كلية العلوم الطبية — دفعة 2027</p>
+        </div>
+        <button class="bio-music-btn" id="bioMusicBtn" type="button">🎵</button>
+    </header>
+    
+    <div class="bio-search">
+        <input type="text" id="bioSearchInput" placeholder="🔍 ابحث عن طالب بالاسم...">
+    </div>
+    
+    <div class="bio-counter">
+        <span id="bioCurrentIndex">1</span> / <span id="bioTotal">126</span>
+    </div>
+    
+    <main class="bio-stage">
+        <button class="bio-nav-btn bio-nav-prev" id="bioPrevBtn" type="button">‹</button>
+        
+        <div class="bio-card" id="bioCard">
+            <!-- الصورة -->
+            <div class="bio-photo-side">
+                <div class="bio-photo-frame">
+                    <img id="bioMainPhoto" src="" alt="">
+                </div>
+                <div class="bio-child-photo" id="bioChildPhoto" title="عندما كان طفلاً">
+                    <img id="bioChildPhotoImg" src="" alt="">
+                </div>
+            </div>
+            
+            <!-- السيرة -->
+            <div class="bio-content-side">
+                <div class="bio-corner tl">✦</div>
+                <div class="bio-corner tr">✦</div>
+                <div class="bio-corner bl">✦</div>
+                <div class="bio-corner br">✦</div>
+                
+                <h2 class="bio-name" id="bioName">الاسم</h2>
+                <div class="bio-job" id="bioJob">المهنة</div>
+                
+                <div class="bio-sep"><span>✦</span></div>
+                
+                <!-- ⬇️ منطقة السيرة الحرة -->
+                <div class="bio-story-area">
+                    <div class="bio-story-content" id="bioStoryContent"></div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="bio-nav-btn bio-nav-next" id="bioNextBtn" type="button">›</button>
+        
+        <div class="bio-swipe-hint">👈 اسحب يميناً أو يساراً للتنقل 👉</div>
+    </main>
+    
+    <div class="bio-bottom-bar">
+        <button class="bio-btn" id="bioFirstBtn">⏮ البداية</button>
+        <div class="bio-jump">
+            <label>اذهب إلى:</label>
+            <input type="number" id="bioJumpInput" min="1" max="126">
+            <button id="bioJumpBtn">اذهب</button>
+        </div>
+        <button class="bio-btn" id="bioLastBtn">النهاية ⏭</button>
+    </div>
+    
+    <!-- لوحة الموسيقى -->
+    <div class="bio-music-panel" id="bioMusicPanel">
+        <div class="bio-music-panel-header">
+            <span class="bio-music-panel-title">🎵 اختر الأغنية</span>
+            <button class="bio-music-panel-close" id="bioMusicPanelClose">✕</button>
+        </div>
+        <div class="bio-music-list" id="bioMusicList"></div>
+    </div>
+    <div class="bio-music-overlay" id="bioMusicOverlay"></div>
+    
+    <div class="bio-toast" id="bioToast"></div>
+    
+    <!-- السكربتات -->
+
+    <script src="data/students.js"></script>
+    <script src="js/book.js"></script>
+</body>
+</html>
