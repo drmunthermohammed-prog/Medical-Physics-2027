@@ -231,8 +231,8 @@
 // 🎵 موسيقى الكتاب (مستقلة تماماً)
 // =========================================================
 const BOOK_TRACKS = [
-    { file: 'music/book.mp3',   name: 'ألحان الكتاب',    icon: '🎵' },
-    { file: 'music/track1.mp3',   name: 'ألحان هادئة',  icon: '🎵' }
+    { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/book.mp3',   name: 'ألحان الكتاب',    icon: '🎵' },
+    { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/track1.mp3',   name: 'ألحان هادئة',  icon: '🎵' }
 ];
 
 const bookAudio = new Audio();
