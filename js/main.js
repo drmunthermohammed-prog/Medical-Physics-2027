@@ -449,10 +449,10 @@ initVideoFrame();
    ========================================================= */
 
 const VIDEOS = [
-    { file: 'video/1.mp4', title: 'الحفل الرسمي', icon: '🎓' },
-    { file: 'video/2.mp4', title: 'لحظات التخرج', icon: '🎬' },
-    { file: 'video/3.mp4', title: 'أجمل الذكريات', icon: '✨' },
-	{ file: 'video/4.mp4', title: 'كلمة الوداع', icon: '💌' },
+    { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/video/1.mp4', title: 'الحفل الرسمي', icon: '🎓' },
+    { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/video/2.mp4', title: 'لحظات التخرج', icon: '🎬' },
+    { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/video/3.mp4', title: 'أجمل الذكريات', icon: '✨' },
+	{ file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/video/4.mp4', title: 'كلمة الوداع', icon: '💌' },
     // ⬇️ أضف المزيد هنا
     // { file: 'video/farewell.mp4', title: 'كلمة الوداع', icon: '💌' },
 ];
