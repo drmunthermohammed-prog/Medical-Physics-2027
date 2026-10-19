@@ -9,9 +9,9 @@
     
     // ===== قائمة الأغاني (3) =====
     const TRACKS = [
-        { file: 'music/welcome.mp3', name: 'الحفل الرسمي', icon: '🎓' },
-        { file: 'music/book.mp3',    name: 'ألحان هادئة',  icon: '🎵' },
-        { file: 'music/book2.mp3',   name: 'ذكريات',       icon: '🎶' }
+        { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/welcome.mp3', name: 'الحفل الرسمي', icon: '🎓' },
+        { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/book.mp3',    name: 'ألحان هادئة',  icon: '🎵' },
+        { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/book2.mp3',   name: 'ذكريات',       icon: '🎶' }
     ];
     
     // ===== الحالة =====
