@@ -26,9 +26,9 @@ let currentModeIndex = 0;
     // ===== إعدادات =====
     const SLIDE_DURATION = 6000; // 6 ثواني لكل شريحة
     const TRACKS = [
-        { file: 'music/track1.mp3', name: 'الموسيقى الهادئة', icon: '🎵' },
-        { file: 'music/track2.mp3', name: 'لحن التخرج', icon: '🎶' },
-        { file: 'music/track3.mp3', name: 'ذكرى الدفعة', icon: '🎼' }
+        { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/track1.mp3', name: 'الموسيقى الهادئة', icon: '🎵' },
+        { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/track2.mp3', name: 'لحن التخرج', icon: '🎶' },
+        { file: 'https://cdn.jsdelivr.net/gh/drmunthermohammed-prog/Medical-Physics-2027@main/music/track3.mp3', name: 'ذكرى الدفعة', icon: '🎼' }
     ];
 
     // ===== عناصر =====
