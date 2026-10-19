@@ -5210,17 +5210,19 @@ body.surprise-active > *:not(.surprise-screen):not(script) {
 }
 
 /* =========================================================
-   🎬 شاشة التحميل المسبق (Preloader)
+   🎬 شاشة التحميل المسبق (Preloader) - نسخة محسّنة
    ========================================================= */
 .project-preloader {
     position: fixed;
     inset: 0;
-    z-index: 9999999; /* فوق كل شيء */
+    z-index: 9999999;
     background: linear-gradient(135deg, #0a1128 0%, #1e3a8a 50%, #0d2354 100%);
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 20px;
     transition: opacity 0.8s ease, visibility 0.8s ease;
+    overflow-y: auto;
 }
 
 .project-preloader.hidden {
@@ -5228,87 +5230,187 @@ body.surprise-active > *:not(.surprise-screen):not(script) {
     visibility: hidden;
 }
 
-.preloader-content {
+.preload-content {
     text-align: center;
-    max-width: 400px;
+    max-width: 550px;
     width: 100%;
-    padding: 20px;
-    animation: preloaderFadeIn 0.6s ease-out;
+    padding: 15px;
+    margin: auto;
+    animation: preloadFadeIn 0.8s ease-out;
 }
 
-@keyframes preloaderFadeIn {
+@keyframes preloadFadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.preloader-cap {
-    font-size: 4rem;
-    margin-bottom: 15px;
-    animation: preloaderCapFloat 2s ease-in-out infinite;
-    filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
+.preload-cap {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    animation: capFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 25px rgba(212, 175, 55, 0.9));
 }
 
-@keyframes preloaderCapFloat {
+@keyframes capFloat {
     0%, 100% { transform: translateY(0) rotate(-5deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
+    50% { transform: translateY(-12px) rotate(5deg); }
 }
 
-.preloader-title {
+.preload-title {
     font-family: 'Aref Ruqaa', 'Amiri', serif;
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     color: #fbbf24;
     font-weight: 700;
-    margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(251, 191, 36, 0.6);
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+    text-shadow: 0 0 30px rgba(251, 191, 36, 0.7);
 }
 
-.preloader-subtitle {
+.preload-subtitle {
+    font-family: 'Cairo', sans-serif;
+    font-size: 0.68rem;
+    color: #7dd3fc;
+    letter-spacing: 5px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.preload-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 12px 0;
+    color: #d4af37;
+}
+
+.preload-divider span:first-child,
+.preload-divider span:last-child {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+.preload-divider span:nth-child(2) {
+    font-size: 0.9rem;
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.8);
+}
+
+.preload-blessing {
+    text-align: center;
+    margin: 12px 0;
+}
+
+.preload-blessing p {
+    font-family: 'Amiri', 'Cairo', serif;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+    line-height: 1.75;
+    margin-bottom: 8px;
+}
+
+.preload-blessing-strong {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    padding: 8px 15px;
+    background: rgba(56, 189, 248, 0.1);
+    border-radius: 10px;
+    border-right: 3px solid #38bdf8;
+    border-left: 3px solid #38bdf8;
+    margin: 10px auto !important;
+    max-width: 90%;
+}
+
+.preload-blessing-strong strong {
+    color: #fbbf24;
+    font-weight: 900;
+}
+
+.preload-blessing-final {
+    color: #fbbf24 !important;
+    font-weight: 600 !important;
+    text-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+    margin-top: 10px !important;
+}
+
+.preload-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: 'Cairo', sans-serif;
     font-size: 0.85rem;
     color: #bae6fd;
-    margin-bottom: 25px;
     font-weight: 600;
+    margin: 12px 0 10px;
+    padding: 8px 18px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(125, 211, 252, 0.3);
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
 }
 
-/* شريط التقدم */
-.preloader-bar-wrap {
+.preload-status-icon {
+    font-size: 1rem;
+    animation: statusPulse 1.5s ease-in-out infinite;
+    display: inline-block;
+}
+
+@keyframes statusPulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+}
+
+.preload-bar-wrap {
     width: 100%;
-    height: 12px;
+    max-width: 400px;
+    margin: 0 auto 10px;
+    height: 10px;
     background: rgba(15, 23, 42, 0.8);
     border-radius: 20px;
     overflow: hidden;
     border: 1px solid rgba(125, 211, 252, 0.3);
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
-    position: relative;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.preloader-bar {
+.preload-bar {
     height: 100%;
     width: 0%;
     background: linear-gradient(90deg, #d4af37, #fbbf24, #d4af37);
     background-size: 200% 100%;
     border-radius: 20px;
-    transition: width 0.3s ease;
-    box-shadow: 0 0 15px rgba(251, 191, 36, 0.6);
-    animation: preloaderShimmer 2s linear infinite;
+    box-shadow: 0 0 15px rgba(251, 191, 36, 0.7);
+    animation: barShimmer 2s linear infinite;
+    transition: width 0.15s linear;
 }
 
-@keyframes preloaderShimmer {
+@keyframes barShimmer {
     0% { background-position: 0% 50%; }
     100% { background-position: 200% 50%; }
 }
 
-.preloader-percent {
+.preload-percent {
     font-family: 'Cairo', sans-serif;
     font-size: 1rem;
     color: #fbbf24;
     font-weight: 800;
-    margin-top: 12px;
     text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
+    margin-top: 8px;
 }
 
 @media (max-width: 600px) {
-    .preloader-cap { font-size: 3rem; }
-    .preloader-title { font-size: 1.5rem; }
-    .preloader-subtitle { font-size: 0.75rem; }
+    .preload-content { padding: 10px; }
+    .preload-cap { font-size: 2.8rem; margin-bottom: 6px; }
+    .preload-title { font-size: 1.5rem; letter-spacing: 1px; }
+    .preload-subtitle { font-size: 0.55rem; letter-spacing: 3px; margin-bottom: 8px; }
+    .preload-blessing p { font-size: 0.72rem; line-height: 1.65; margin-bottom: 5px; }
+    .preload-blessing-strong { font-size: 0.8rem !important; padding: 6px 10px; }
+    .preload-divider { margin: 8px 0; gap: 10px; }
+    .preload-divider span:first-child,
+    .preload-divider span:last-child { width: 40px; }
+    .preload-status { font-size: 0.72rem; padding: 6px 14px; margin: 8px 0; }
+    .preload-bar-wrap { height: 8px; }
+    .preload-percent { font-size: 0.85rem; }
 }
