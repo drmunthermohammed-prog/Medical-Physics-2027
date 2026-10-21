@@ -5505,3 +5505,66 @@ body.surprise-active > *:not(.surprise-screen):not(script) {
 #spNextToStarsBtn {
     margin: 0 auto;
 }
+
+
+/* =========================================================
+   🛡️ إصلاح أزرار الجوال - حماية شاملة
+   ========================================================= */
+
+/* 1. شريط التنقل فوق أي طبقة شفافة */
+.quick-nav {
+    position: relative !important;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+}
+
+.quick-nav-btn {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: rgba(201, 169, 97, 0.3) !important;
+    touch-action: manipulation !important;
+    position: relative !important;
+    z-index: 101 !important;
+    user-select: none !important;
+    -webkit-user-select: none !important;
+}
+
+/* 2. الأزرار العائمة */
+.floating-buttons,
+.certificate-btn,
+.bg-music-toggle,
+.scroll-top {
+    pointer-events: auto !important;
+    z-index: 600 !important;
+}
+
+/* 3. عندما تكون شاشة المفاجأة مخفية - لا تحجب */
+.surprise-screen:not(.active) {
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* 4. عندما يكون preloader مخفياً - لا يحجب */
+.project-preloader.hidden {
+    pointer-events: none !important;
+    visibility: hidden !important;
+}
+
+/* 5. bg-layer لا يحجب أبداً */
+.bg-layer {
+    pointer-events: none !important;
+}
+
+/* 6. يضمن أن الروابط تعمل */
+a, button {
+    pointer-events: auto;
+}
+
+/* 7. أزرار الفيديو والتبويبات */
+.video-tab,
+.vpl-item,
+.fs-ctrl-btn {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    touch-action: manipulation !important;
+}
