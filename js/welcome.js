@@ -438,58 +438,79 @@ if (openEnvelopeBtn) {
     // إنهاء المفاجأة
     // =========================================================
     function finishSurprise() {
-        try {
-            sessionStorage.setItem(SPLASH_KEY, 'true');
-        } catch (e) {}
-        
-        // مسح المؤقتات
-        journeyTimers.forEach(t => clearTimeout(t));
+    try {
+        sessionStorage.setItem(SPLASH_KEY, 'true');
+    } catch (e) {}
 
-        // 🎵 إيقاف كل الأصوات
-        if (envelopeSong) {
-            envelopeSong.pause();
-            envelopeSong.currentTime = 0;
-        }
-        if (zaghareetSong) {
-            zaghareetSong.pause();
-            zaghareetSong.currentTime = 0;
-        }
-        if (envelopeResumeTimeout) {
-            clearTimeout(envelopeResumeTimeout);
-        }
-        console.log('🎵 إيقاف كل الأصوات');
-        
-        
-        screen.style.opacity = '0';
-        screen.style.transition = 'opacity 0.6s ease';
-        
-setTimeout(() => {
-    // 1. إخفاء شاشة المفاجأة تماماً
-    screen.style.display = 'none';
-    screen.style.visibility = 'hidden';
-    screen.style.pointerEvents = 'none';
-    screen.classList.remove('active');
-    
-    // 2. إخفاء الـ preloader (احتياطي)
-    const preloader = document.getElementById('projectPreloader');
-    if (preloader) {
-        preloader.style.display = 'none';
-        preloader.style.visibility = 'hidden';
-        preloader.style.pointerEvents = 'none';
+    // مسح المؤقتات
+    journeyTimers.forEach(t => clearTimeout(t));
+
+    // 🎵 إيقاف كل الأصوات
+    if (envelopeSong) {
+        envelopeSong.pause();
+        envelopeSong.currentTime = 0;
     }
-    
-    // 3. إزالة كلاس الحماية
-    document.body.classList.remove('surprise-active');
-    document.body.style.overflow = '';
-    
-    // 4. إعادة إظهار الموقع
-    document.querySelectorAll('body > *:not(#surpriseScreen):not(script)').forEach(function(el) {
-        el.style.display = '';
-    });
-    
-    console.log('✅ المفاجأة انتهت - الموقع مرئي الآن');
-}, 600);
+    if (zaghareetSong) {
+        zaghareetSong.pause();
+        zaghareetSong.currentTime = 0;
     }
+    if (envelopeResumeTimeout) {
+        clearTimeout(envelopeResumeTimeout);
+    }
+
+    screen.style.opacity = '0';
+    screen.style.transition = 'opacity 0.6s ease';
+
+    setTimeout(() => {
+        // 1. إخفاء شاشة المفاجأة تماماً
+        screen.style.display = 'none';
+        screen.style.pointerEvents = 'none';
+        screen.classList.remove('active');
+
+        // 2. ⬇️⬇️⬇️ الأهم: إخفاء Preloader نهائياً
+        const preloader = document.getElementById('projectPreloader');
+        if (preloader) {
+            preloader.classList.add('hidden');
+            preloader.style.display = 'none';
+            preloader.style.visibility = 'hidden';
+            preloader.style.pointerEvents = 'none';
+        }
+
+        // 3. إزالة كلاس الحماية
+        document.body.classList.remove('surprise-active');
+        document.body.style.overflow = '';
+
+        // 4. ⬇️ إعادة إظهار عناصر الموقع فقط (بدون Preloader أو Modals)
+        const siteElements = document.querySelectorAll(
+            'body > .poster-header, ' +
+            'body > .quick-nav, ' +
+            'body > .controls, ' +
+            'body > .video-hero, ' +
+            'body > .scroll-top, ' +
+            'body > .floating-buttons, ' +
+            'body > .footer-note, ' +
+            'body > .bg-layer'
+        );
+        
+        siteElements.forEach(function(el) {
+            el.style.display = '';
+            el.style.pointerEvents = 'auto';
+        });
+
+        // 5. تأكد من أن الأزرار قابلة للنقر
+        document.querySelectorAll('.quick-nav-btn, .certificate-btn').forEach(btn => {
+            btn.style.pointerEvents = 'auto';
+            btn.style.zIndex = '9999';
+        });
+
+        // 🎵 استئناف موسيقى الخلفية
+        if (window.BgMusic) {
+            window.BgMusic.play();
+        }
+
+        console.log('✅ المفاجأة انتهت - الموقع مرئي الآن');
+    }, 600);
+}
     // =========================================================
     // تحميل الشهادة كصورة
     // =========================================================
