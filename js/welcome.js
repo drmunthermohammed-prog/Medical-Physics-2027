@@ -464,22 +464,28 @@ if (openEnvelopeBtn) {
         screen.style.transition = 'opacity 0.6s ease';
         
 setTimeout(() => {
+    // 1. إخفاء شاشة المفاجأة تماماً
     screen.style.display = 'none';
+    screen.style.visibility = 'hidden';
+    screen.style.pointerEvents = 'none';
     screen.classList.remove('active');
     
-    // ⬇️ الأهم: إزالة كلاس surprise-active من body
-    document.body.classList.remove('surprise-active');
+    // 2. إخفاء الـ preloader (احتياطي)
+    const preloader = document.getElementById('projectPreloader');
+    if (preloader) {
+        preloader.style.display = 'none';
+        preloader.style.visibility = 'hidden';
+        preloader.style.pointerEvents = 'none';
+    }
     
-    // ⬇️ إعادة إظهار الموقع
+    // 3. إزالة كلاس الحماية
+    document.body.classList.remove('surprise-active');
+    document.body.style.overflow = '';
+    
+    // 4. إعادة إظهار الموقع
     document.querySelectorAll('body > *:not(#surpriseScreen):not(script)').forEach(function(el) {
         el.style.display = '';
     });
-    
-    // 🎵 استئناف موسيقى الخلفية (welcome.mp3)
-    if (window.BgMusic) {
-        window.BgMusic.play();
-        console.log('▶️ BgMusic: استؤنفت في الخلفية');
-    }
     
     console.log('✅ المفاجأة انتهت - الموقع مرئي الآن');
 }, 600);
