@@ -5484,3 +5484,24 @@ body.surprise-active > *:not(.surprise-screen):not(script) {
     -webkit-tap-highlight-color: rgba(251, 191, 36, 0.3);
     touch-action: manipulation;
 }
+
+/* =========================================================
+   🚫 إخفاء أزرار التحميل والمشاركة (لا تعمل بشكل موثوق)
+   ========================================================= */
+
+/* في شاشة المفاجأة */
+#spDownloadCertBtn,
+#spShareCertBtn {
+    display: none !important;
+}
+
+/* في نافذة الشهادة من الموقع الرئيسي */
+#certModalDownload,
+#certModalShare {
+    display: none !important;
+}
+
+/* توسيط زر "شاهد سماء الدفعة" بعد الإخفاء */
+#spNextToStarsBtn {
+    margin: 0 auto;
+}
