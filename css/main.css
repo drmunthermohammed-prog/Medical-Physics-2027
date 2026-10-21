@@ -5414,3 +5414,73 @@ body.surprise-active > *:not(.surprise-screen):not(script) {
     .preload-bar-wrap { height: 8px; }
     .preload-percent { font-size: 0.85rem; }
 }
+
+
+/* =========================================================
+   🛡️ إصلاح مشكلة صعوبة الضغط على النجوم
+   ========================================================= */
+
+/* 1. الترويسة لا تلتقط النقرات (ديكور فقط) */
+.sp-stars-header,
+.sp-stars-title,
+.sp-stars-hint {
+    pointer-events: none !important;
+}
+
+/* 2. القمر لا يلتقط النقرات */
+.sp-moon,
+.sp-moon::before,
+.sp-moon::after {
+    pointer-events: none !important;
+}
+
+/* 3. إزالة overflow: hidden للسماح بمساحة لمس أكبر */
+.sp-star {
+    overflow: visible !important;
+}
+
+/* إبقاء صورة النجمة دائرية */
+.sp-star img {
+    border-radius: 50% !important;
+}
+
+/* إبقاء التدرج (::after) دائرياً */
+.sp-star::after {
+    border-radius: 50% !important;
+}
+
+/* 4. ⬇️ الأهم: مساحة لمس أكبر للنجوم العادية */
+.sp-star:not(.sp-star-you)::before {
+    content: "";
+    position: absolute;
+    inset: -10px;   /* مساحة إضافية 10px في كل اتجاه */
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* 5. على الجوال: مساحة لمس أكبر (نجوم أصغر = لمس أكبر) */
+@media (max-width: 768px) {
+    .sp-star:not(.sp-star-you)::before {
+        inset: -14px;   /* 14px إضافية على الجوال */
+    }
+}
+
+/* 6. نجمة المستخدم: مساحة لمس أكبر أيضاً */
+.sp-star.sp-star-you {
+    min-width: 70px !important;
+    min-height: 70px !important;
+}
+
+@media (max-width: 600px) {
+    .sp-star.sp-star-you {
+        min-width: 60px !important;
+        min-height: 60px !important;
+    }
+}
+
+/* 7. النجوم الصغيرة: إزالة أي قيود على الحجم */
+.sp-star:not(.sp-star-you) {
+    cursor: pointer;
+    -webkit-tap-highlight-color: rgba(251, 191, 36, 0.3);
+    touch-action: manipulation;
+}
